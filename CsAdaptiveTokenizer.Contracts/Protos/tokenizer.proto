@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "CsAdaptiveTokenizer.Contracts";
+
+package tokenizer;
+
+service Tokenizer {
+  rpc Load(LoadRequest) returns (LoadReply);
+  rpc Encode (EncodeRequest) returns (EncodeReply);
+  rpc Decode (DecodeRequest) returns (DecodeReply);
+}
+
+message LoadRequest {
+  string path = 1;
+}
+
+message LoadReply {
+  bool isSuccess = 1;
+}
+
+message EncodeRequest {
+  string dataToEncode = 1;
+}
+
+message EncodeReply {
+  repeated int64 encodedData = 1;
+}
+
+message DecodeRequest {
+  repeated int64 dataToDecode = 1;
+}
+
+message DecodeReply {
+  string decodedData = 1;
+}
